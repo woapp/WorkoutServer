@@ -1,10 +1,13 @@
 # WorkoutServer
 
-To start your Phoenix server:
+## Initial setup
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+At the root of the project, run 
+```bash
+docker-compose up --no-start db 
+docker-compose run server mix setup 
+docker-compose up
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
