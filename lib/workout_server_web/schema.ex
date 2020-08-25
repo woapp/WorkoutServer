@@ -2,11 +2,18 @@ defmodule WorkoutServerWeb.Schema do
   use Absinthe.Schema
 
   alias WorkoutServerWeb.NewsResolver
+  alias WorkoutServerWeb.UsersResolver
 
   object :link do
     field :id, non_null(:id)
     field :url, non_null(:string)
     field :description, non_null(:string)
+  end
+
+  object :account do
+    field :id, non_null(:id)
+    field :name, non_null(:string)
+    field :email, non_null(:string)
   end
 
   query do
@@ -19,10 +26,19 @@ defmodule WorkoutServerWeb.Schema do
   mutation do
     @desc "Create a new link"
     field :create_link, :link do
-      arg :url, non_null(:string)
-      arg :description, non_null(:string)
+      arg(:url, non_null(:string))
+      arg(:description, non_null(:string))
 
-      resolve &NewsResolver.create_link/3
+      resolve(&NewsResolver.create_link/3)
+    end
+
+    @desc "Create user"
+    field :create_user, type: :account do
+      arg(:name, non_null(:string))
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve(&UsersResolver.create_account/3)
     end
   end
 end

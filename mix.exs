@@ -47,7 +47,7 @@ defmodule WorkoutServer.MixProject do
       {:absinthe_plug, "~> 1.4"},
       {:poison, "~> 2.1.0"},
       {:guardian, "~> 2.0"},
-      {:bcrypt_elixir, "~> 2.2.0"},
+      {:bcrypt_elixir, "~> 2.0"},
       {:comeonin, "~> 5.3.0"}
     ]
   end
