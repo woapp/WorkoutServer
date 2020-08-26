@@ -1,5 +1,6 @@
 defmodule WorkoutServerWeb.Schema do
   use Absinthe.Schema
+  use Absinthe.Resolution.Helpers
 
   alias WorkoutServerWeb.NewsResolver
   alias WorkoutServerWeb.UsersResolver
@@ -20,6 +21,14 @@ defmodule WorkoutServerWeb.Schema do
     @desc "Get all links"
     field :all_links, non_null(list_of(non_null(:link))) do
       resolve(&NewsResolver.all_links/3)
+    end
+
+    @desc "Login with email/password"
+    field :login, type: :session do
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve(&UserResolver.login/2)
     end
   end
 
