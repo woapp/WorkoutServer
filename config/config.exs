@@ -26,6 +26,22 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# configures Guardian
+config :blog_app_gql, BlogAppGql.Guardian,
+  # optional
+  allowed_algos: ["HS512"],
+  # optional
+  verify_module: Guardian.JWT,
+  issuer: "BlogAppGql",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  # optional
+  verify_issuer: true,
+  # generated using: JOSE.JWK.generate_key({:oct, 16}) |> JOSE.JWK.to_map |> elem(1)
+  # TODO: generate proper secret key
+  secret_key: %{"k" => "3gx0vXjUD2BJ8xfo_aQWIA", "kty" => "oct"},
+  serializer: BlogAppGql.Guardian
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
