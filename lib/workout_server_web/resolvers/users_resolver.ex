@@ -1,17 +1,16 @@
-defmodule WorkoutServerWeb.UsersResolver do
+defmodule WorkoutServerWeb.Resolvers.User do
   alias WorkoutServer.Users
   alias WorkoutServerWeb.AuthHelper
-  import WorkoutServerWeb.AuthHelper
+  alias WorkoutServerWeb.Guardian
 
-  def account(_root, _args, _info) do
+  def(account(_root, _args, _info)) do
     {:ok, Users.list_account()}
   end
 
   def login(%{email: email, password: password}, _info) do
-    with do
-      {:ok, user} <- AuthHelper.login_with_email_pass(email, password)
-      #  {:ok, jwt, _} <- BlogAppGql.Guardian.encode_and_sign(user),
-      {:ok, %{token: jwt}}
+    with {:ok, account} <- AuthHelper.login_with_email_pass(email, password),
+         {:ok, jwt, _} <- Guardian.encode_and_sign(account) do
+      {:ok, %{jwt: jwt}}
     end
   end
 

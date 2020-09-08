@@ -1,4 +1,4 @@
-defmodule WorkoutServerWeb.NewsResolver do
+defmodule WorkoutServerWeb.Resolvers.News do
   alias WorkoutServer.News
 
   def all_links(_root, _args, _info) do
