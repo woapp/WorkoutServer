@@ -15,8 +15,8 @@ defmodule WorkoutServerWeb.Guardian do
     # Here we'll look up our resource from the claims, the subject can be
     # found in the `"sub"` key. In `above subject_for_token/2` we returned
     # the resource id so here we'll rely on that to look it up.
-    account = claims["sub"] |> Users.get_account()
+    account = claims["sub"] |> WorkoutServer.Users.get_account!()
 
-    {:ok, user}
+    {:ok, account}
   end
 end
