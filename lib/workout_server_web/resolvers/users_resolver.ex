@@ -3,7 +3,7 @@ defmodule WorkoutServerWeb.Resolvers.User do
   alias WorkoutServerWeb.AuthHelper
   alias WorkoutServerWeb.Guardian
 
-  def(account(_root, _args, _info)) do
+  def account(_root, _args, _info) do
     {:ok, Users.list_account()}
   end
 
