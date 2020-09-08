@@ -9,9 +9,8 @@ defmodule WorkoutServerWeb.Router do
     pipe_through :api
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
-      schema: WorkoutServerWeb.Schema,
+      schema: WorkoutServerWeb.Schema.Schema,
       interface: :simple,
       context: %{pubsub: WorkoutServerWeb.Endpoint}
   end
-
 end
