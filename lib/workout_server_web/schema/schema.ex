@@ -1,6 +1,6 @@
-defmodule WorkoutServerWeb.Schema do
+defmodule WorkoutServerWeb.Schema.Schema do
   use Absinthe.Schema
-  use Absinthe.Resolution.Helpers
+  # use Absinthe.Resolution.Helpers
 
   alias WorkoutServerWeb.Resolvers.News
   alias WorkoutServerWeb.Resolvers.User
@@ -23,13 +23,13 @@ defmodule WorkoutServerWeb.Schema do
       resolve(&News.all_links/3)
     end
 
-    @desc "Login with email/password"
-    field :login, type: :session do
-      arg(:email, non_null(:string))
-      arg(:password, non_null(:string))
+    # @desc "Login with email/password"
+    # field :login, type: :session do
+    #   arg(:email, non_null(:string))
+    #   arg(:password, non_null(:string))
 
-      resolve(&UserResolver.login/2)
-    end
+    #   resolve(&UserResolver.login/2)
+    # end
   end
 
   mutation do
