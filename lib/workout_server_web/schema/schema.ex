@@ -1,6 +1,5 @@
 defmodule WorkoutServerWeb.Schema.Schema do
   use Absinthe.Schema
-  # use Absinthe.Resolution.Helpers
 
   alias WorkoutServerWeb.Resolvers.News
   alias WorkoutServerWeb.Resolvers.User
