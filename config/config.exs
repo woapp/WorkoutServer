@@ -28,19 +28,8 @@ config :phoenix, :json_library, Jason
 
 # configures Guardian
 config :workout_server_web, WorkoutServerWeb.Guardian,
-  # optional
-  allowed_algos: ["HS512"],
-  # optional
-  verify_module: Guardian.JWT,
-  issuer: "WorkoutServerWeb",
-  ttl: {30, :days},
-  allowed_drift: 2000,
-  # optional
-  verify_issuer: true,
-  # generated using: JOSE.JWK.generate_key({:oct, 16}) |> JOSE.JWK.to_map |> elem(1)
-  # TODO: generate proper secret key
-  secret_key: %{"k" => "3gx0vXjUD2BJ8xfo_aQWIA", "kty" => "oct"},
-  serializer: WorkoutServerWeb.Guardian
+  issuer: "workout_server_web",
+  secret_key: "QNwOcSVDJKJAitQX6/LFDGO71oYu8koOoicVIqdx2zeQnlgCDLZQo2Tc86n/Nody"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

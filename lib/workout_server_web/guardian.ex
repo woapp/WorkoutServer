@@ -1,5 +1,5 @@
 defmodule WorkoutServerWeb.Guardian do
-  use Guardian, otp_app: :blog_app_gql
+  use Guardian, otp_app: :workout_server_web
 
   def subject_for_token(user, _claims) do
     # You can use any value for the subject of your token but
