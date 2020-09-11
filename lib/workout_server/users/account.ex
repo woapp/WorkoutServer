@@ -9,6 +9,7 @@ defmodule WorkoutServer.Users.Account do
     field :name, :string
     field :password_hash, :string
     field :password, :string, virtual: true
+    field(:jwt, :string)
 
     timestamps()
   end
@@ -22,6 +23,11 @@ defmodule WorkoutServer.Users.Account do
     |> validate_length(:password, min: 4, max: 20)
     |> unique_constraint(:email, downcase: true)
     |> put_password_hash()
+  end
+
+  def store_jwt_changeset(account, attrs) do
+    account
+    |> cast(attrs, [:jwt])
   end
 
   defp put_password_hash(changeset) do

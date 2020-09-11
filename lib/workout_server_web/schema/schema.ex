@@ -45,12 +45,18 @@ defmodule WorkoutServerWeb.Schema.Schema do
     end
 
     @desc "Create user"
-    field :create_user, type: :account do
+    field(:create_user, type: :account) do
       arg(:name, non_null(:string))
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
 
       resolve(&User.create_account/3)
+    end
+
+    @desc "Logout user"
+    field :logout, :string do
+      resolve(&WorkoutServerWeb.Resolvers.User.logout/2)
+      "toto"
     end
   end
 end
