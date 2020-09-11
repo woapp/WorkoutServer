@@ -2,7 +2,6 @@ defmodule WorkoutServerWeb.Context do
   @behaviour Plug
 
   import Plug.Conn
-  alias WorkoutServerWeb.Guardian
   alias WorkoutServer.Users.Account
   import Ecto.Query, only: [where: 2]
   alias WorkoutServer.Repo
