@@ -15,7 +15,8 @@ services:
   server:
     build: .
     env_file: .env
-    command: mix phx.server
+    # following command addresses this issue with bcrypt module https://github.com/riverrun/comeonin/issues/64
+    command: bash -c "mix deps.get && (cd deps/bcrypt_elixir && make clean && make) && mix deps.compile && mix phx.server"
     volumes:
       - .:/app
       - node_modules:/app/assets/node_modules
