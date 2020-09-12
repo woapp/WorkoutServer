@@ -26,6 +26,11 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# configures Guardian
+config :workout_server_web, WorkoutServerWeb.Guardian,
+  issuer: "workout_server_web",
+  secret_key: "QNwOcSVDJKJAitQX6/LFDGO71oYu8koOoicVIqdx2zeQnlgCDLZQo2Tc86n/Nody"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
