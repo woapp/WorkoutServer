@@ -1,8 +1,6 @@
 defmodule WorkoutServer.Users.Account do
   use Ecto.Schema
   import Ecto.Changeset
-  # alias Bcrypt
-  alias Comeonin
 
   schema "account" do
     field :email, :string
@@ -33,9 +31,7 @@ defmodule WorkoutServer.Users.Account do
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        # TODO: fix Bcrypt hash issue
-        # put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass, []))
-        put_change(changeset, :password_hash, pass)
+        put_change(changeset, :password_hash, Bcrypt.hash_pwd_salt(pass))
 
       _ ->
         changeset
